@@ -4,7 +4,7 @@ repositorio de prueba para la ayudantía de DTS
     <head>
       <meta charset="UTF-8">
       <title>Page Title</title>
-      <link rel="stylesheet" href="style.css"> <!-- Optional: Link to CSS file for styling -->
+      <link rel="stylesheet" href="style.css"> 
     </head>
     <body>
       <!-- Content for the page -->
