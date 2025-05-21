@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visualización de Datos – Manovich + Fry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <canvas id="bg"></canvas>
+  <div class="main-title">Visualización de Datos</div>
+  <div class="container">
+    <section >
+      <h1> La visualización de datos como nueva abstracción y antisublime</h1>
+      <p class="floatUpDown">>Este ensayo web vincula el paper de <span class="tooltip" data-tooltip="Teórico de los nuevos medios y pionero en estudios sobre software y cultura digital">Lev Manovich</span> con el proyecto <span class="tooltip" data-tooltip="Un proyecto de visualización genética interactiva desarrollado por Ben Fry en 2002">Valence (2002)</span> de <span class="tooltip" data-tooltip="Diseñador, programador y co-creador de Processing, centrado en la visualización de información">Ben Fry</span>.</p>
+    </section>
+
+    <section>
+      <h2>Lev Manovich</h2>
+      <img src="Lev.jpg"  style=" width: 300px; height: 400 px"  object-fit: contain>>
+      <p class="floatLeftRight">Manovich analiza cómo la <span class="tooltip" data-tooltip="Transformación de datos complejos en formas visuales que permiten su interpretación">visualización de datos</span> reemplaza formas tradicionales de representación y rompe con el ideal romántico del arte sublime.</p>
+    </section>
+
+    <section>
+      <h2>Valence</h2>
+      <p class="floatUpDown"><em>Valence</em> representa <span class="tooltip" data-tooltip="Estructuras de ADN como redes de relaciones moleculares">moléculas genéticas</span> en una interfaz interactiva, posicionando la ciencia como un lenguaje visual. Utiliza Processing para mostrar cómo el diseño puede hacer visible lo invisible.</p>
+    </section>
+
+    <section>
+      <h2>Ben Fry</h2>
+    </section>
+
+    <section>
+      <h2>Vinculación Crítica</h2>
+      <p class="floatLeftRight">Ambos trabajos proponen una nueva forma de <span class="tooltip" data-tooltip="Percepción basada en relaciones visuales en lugar de estructuras narrativas">percepción</span> basada en patrones. Fry lleva lo que Manovich plantea a la práctica, ejemplificando cómo el diseñador actúa como mediador entre datos y sentidos.</p>
+    </section>
+
+    <section>
+      <h2>Conclusión</h2>
+      <p class="floatUpDown">Este cruce revela el rol del diseño como traductor cultural y científico. Visualizar no es solo representar: es decidir cómo vemos el mundo.</p>
+    </section>
+  </div>
+
+  <script>
+    // Fondo animado
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let stars = Array.from({length: 200}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5,
+      dx: (Math.random() - 0.5) * 0.5,
+      dy: (Math.random() - 0.5) * 0.5
+    }));
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        s.x += s.dx;
+        s.y += s.dy;
+        if (s.x < 0 || s.x > canvas.width) s.dx *= -1;
+        if (s.y < 0 || s.y > canvas.height) s.dy *= -1;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = '#76c7ff';
+        ctx.fill();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Observador de aparición
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+    sections.forEach(s => observer.observe(s));
+
+    // Red molecular
+    const container = document.querySelector('.container');
+    const nodes = [];
+    const links = [];
+    for (let i = 0; i < 12; i++) {
+      const node = document.createElement('div');
+      node.className = 'node';
+      node.style.top = `${Math.random() * window.innerHeight}px`;
+      node.style.left = `${Math.random() * window.innerWidth}px`;
+      container.appendChild(node);
+      nodes.push(node);
+    }
+
+    nodes.forEach((a, i) => {
+      for (let j = i + 1; j < nodes.length; j++) {
+        if (Math.random() > 0.7) continue;
+        const b = nodes[j];
+        const link = document.createElement('div');
+        link.className = 'link';
+        const ax = parseFloat(a.style.left);
+        const ay = parseFloat(a.style.top);
+        const bx = parseFloat(b.style.left);
+        const by = parseFloat(b.style.top);
+        const dx = bx - ax;
+        const dy = by - ay;
+        const len = Math.hypot(dx, dy);
+        link.style.width = `${len}px`;
+        link.style.top = `${ay}px`;
+        link.style.left = `${ax}px`;
+        link.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
+        container.appendChild(link);
+        links.push(link);
+      }
+    });
+
+    // Posicionamiento aleatorio sin solapamiento
+    function doesOverlap(rect1, rect2) {
+      return !(
+        rect1.right < rect2.left ||
+        rect1.left > rect2.right ||
+        rect1.bottom < rect2.top ||
+        rect1.top > rect2.bottom
+      );
+    }
+
+    function placeSectionsWithoutOverlap() {
+      const placedRects = [];
+      const padding = 20;
+      const maxAttempts = 1000;
+
+      document.querySelectorAll('section').forEach(section => {
+        let attempts = 0;
+        let placed = false;
+
+        while (!placed && attempts < maxAttempts) {
+          const width = section.offsetWidth || 350;
+          const height = section.offsetHeight || 150;
+
+          const x = Math.random() * (window.innerWidth - width - padding * 2) + padding;
+          const y = Math.random() * (window.innerHeight - height - padding * 2) + padding;
+
+          const newRect = {
+            left: x,
+            top: y,
+            right: x + width,
+            bottom: y + height
+          };
+
+          const collision = placedRects.some(rect => doesOverlap(rect, newRect));
+
+          if (!collision) {
+            section.style.left = `${x}px`;
+            section.style.top = `${y}px`;
+            placedRects.push(newRect);
+            placed = true;
+          }
+
+          attempts++;
+        }
+
+        if (!placed) {
+          console.warn("No se pudo ubicar una sección sin solapamiento después de muchos intentos.");
+        }
+      });
+    }
+
+    window.addEventListener('load', placeSectionsWithoutOverlap);
+    window.addEventListener('resize', placeSectionsWithoutOverlap);
+  </script>
+</body>
+</html>
