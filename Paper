@@ -11,15 +11,15 @@
   <canvas id="bg"></canvas>
   <div class="main-title">Visualización de Datos</div>
   <div class="container">
-    <section >
+    <section class="floatUpDown" >
       <h1> La visualización de datos como nueva abstracción y antisublime</h1>
-      <p class="floatUpDown">>Este ensayo web vincula el paper de <span class="tooltip" data-tooltip="Teórico de los nuevos medios y pionero en estudios sobre software y cultura digital">Lev Manovich</span> con el proyecto <span class="tooltip" data-tooltip="Un proyecto de visualización genética interactiva desarrollado por Ben Fry en 2002">Valence (2002)</span> de <span class="tooltip" data-tooltip="Diseñador, programador y co-creador de Processing, centrado en la visualización de información">Ben Fry</span>.</p>
+      <p>>Este ensayo web vincula el paper de <span class="tooltip" data-tooltip="Teórico de los nuevos medios y pionero en estudios sobre software y cultura digital">Lev Manovich</span> con el proyecto <span class="tooltip" data-tooltip="Un proyecto de visualización genética interactiva desarrollado por Ben Fry en 2002">Valence (2002)</span> de <span class="tooltip" data-tooltip="Diseñador, programador y co-creador de Processing, centrado en la visualización de información">Ben Fry</span>.</p>
     </section>
 
     <section>
       <h2>Lev Manovich</h2>
       <img src="Lev.jpg"  style=" width: 300px; height: 400 px"  object-fit: contain>>
-      <p class="floatLeftRight">Manovich analiza cómo la <span class="tooltip" data-tooltip="Transformación de datos complejos en formas visuales que permiten su interpretación">visualización de datos</span> reemplaza formas tradicionales de representación y rompe con el ideal romántico del arte sublime.</p>
+      <p class="floatUpDown">Manovich analiza cómo la <span class="tooltip" data-tooltip="Transformación de datos complejos en formas visuales que permiten su interpretación">visualización de datos</span> reemplaza formas tradicionales de representación y rompe con el ideal romántico del arte sublime.</p>
     </section>
 
     <section>
@@ -33,7 +33,7 @@
 
     <section>
       <h2>Vinculación Crítica</h2>
-      <p class="floatLeftRight">Ambos trabajos proponen una nueva forma de <span class="tooltip" data-tooltip="Percepción basada en relaciones visuales en lugar de estructuras narrativas">percepción</span> basada en patrones. Fry lleva lo que Manovich plantea a la práctica, ejemplificando cómo el diseñador actúa como mediador entre datos y sentidos.</p>
+      <p class="floatUpDown">Ambos trabajos proponen una nueva forma de <span class="tooltip" data-tooltip="Percepción basada en relaciones visuales en lugar de estructuras narrativas">percepción</span> basada en patrones. Fry lleva lo que Manovich plantea a la práctica, ejemplificando cómo el diseñador actúa como mediador entre datos y sentidos.</p>
     </section>
 
     <section>
@@ -82,41 +82,7 @@
     }, { threshold: 0.2 });
     sections.forEach(s => observer.observe(s));
 
-    // Red molecular
-    const container = document.querySelector('.container');
-    const nodes = [];
-    const links = [];
-    for (let i = 0; i < 12; i++) {
-      const node = document.createElement('div');
-      node.className = 'node';
-      node.style.top = `${Math.random() * window.innerHeight}px`;
-      node.style.left = `${Math.random() * window.innerWidth}px`;
-      container.appendChild(node);
-      nodes.push(node);
-    }
-
-    nodes.forEach((a, i) => {
-      for (let j = i + 1; j < nodes.length; j++) {
-        if (Math.random() > 0.7) continue;
-        const b = nodes[j];
-        const link = document.createElement('div');
-        link.className = 'link';
-        const ax = parseFloat(a.style.left);
-        const ay = parseFloat(a.style.top);
-        const bx = parseFloat(b.style.left);
-        const by = parseFloat(b.style.top);
-        const dx = bx - ax;
-        const dy = by - ay;
-        const len = Math.hypot(dx, dy);
-        link.style.width = `${len}px`;
-        link.style.top = `${ay}px`;
-        link.style.left = `${ax}px`;
-        link.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
-        container.appendChild(link);
-        links.push(link);
-      }
-    });
-
+  
     // Posicionamiento aleatorio sin solapamiento
     function doesOverlap(rect1, rect2) {
       return !(
@@ -160,10 +126,6 @@
           }
 
           attempts++;
-        }
-
-        if (!placed) {
-          console.warn("No se pudo ubicar una sección sin solapamiento después de muchos intentos.");
         }
       });
     }
