@@ -4,7 +4,8 @@ body {
       font-family: verdana;
       overflow: hidden;
       color: #ffffff;
-      background-color: #000;
+      background-color: #000; 
+      position: static;
     }
 
     canvas#bg {
@@ -28,20 +29,22 @@ body {
       ;
     }
       .container {
-       left: 0;
+     
+      left: 0;
       width: 100vw;
       height: 100vh;
       overflow: hidden;
-      top: 50px;
-      border-box: 5x;
+      top: 10%;
+      border-box: 5px;
      }
 
-    section {
+    section {3360
       position: absolute;
       max-width: 350px;
       opacity: 0;
       transition: all 1s ease;
       box-sizing: border-box;
+      text-align: center
     }
 
     section.visible {
@@ -50,10 +53,11 @@ body {
 
     h1, h2 {
       color: #76c7ff;
-      font-size: 1.5rem;
+      font-size: 15px;
       animation-duration: 6s;
       animation-timing-function: ease-in-out;
-      animation-iteration-count: infinite
+      animation-iteration-count: infinite;
+      ;
     }
 
     .tooltip {
@@ -92,6 +96,7 @@ body {
 
     p {
       font-family: verdana;
+      font-size: 12px;
       position: relative;
       display: inline-block;
       animation-duration: 6s;
