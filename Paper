@@ -13,22 +13,25 @@
   <div class="container">
     <section>
       <h1> La visualización de datos como nueva abstracción y antisublime</h1>
-      <p>>Este ensayo web vincula el paper de <span class="tooltip" data-tooltip="Teórico de los nuevos medios y pionero en estudios sobre software y cultura digital">Lev Manovich</span> con el proyecto <span class="tooltip" data-tooltip="Un proyecto de visualización genética interactiva desarrollado por Ben Fry en 2002">Valence (2002)</span> de <span class="tooltip" data-tooltip="Diseñador, programador y co-creador de Processing, centrado en la visualización de información">Ben Fry</span>.</p>
+       <a href="Visualización.html"><img src="Datos.png"  style=" width: 200px; height: 200 px; border-radius: 50%"></a>
+      <p class="floatUpDown">Este ensayo web vincula el paper de <span class="tooltip" data-tooltip="Teórico de los nuevos medios y pionero en estudios sobre software y cultura digital">Lev Manovich</span> con el proyecto <span class="tooltip" data-tooltip="Un proyecto de visualización genética interactiva desarrollado por Ben Fry en 2002">Valence (2002)</span> de <span class="tooltip" data-tooltip="Diseñador, programador y co-creador de Processing, centrado en la visualización de información">Ben Fry</span>.</p>
     </section>
 
     <section>
       <h2>Lev Manovich</h2>
-      <img src="Lev.jpg"  style=" width: 300px; height: 400 px"  object-fit: contain>>
+      <a href="Lev Manovich.html"><img src="Lev.jpg"  style=" width: 200px; height: 200 px; border-radius: 50%"></a>
       <p class="floatUpDown">Manovich analiza cómo la <span class="tooltip" data-tooltip="Transformación de datos complejos en formas visuales que permiten su interpretación">visualización de datos</span> reemplaza formas tradicionales de representación y rompe con el ideal romántico del arte sublime.</p>
     </section>
 
     <section>
       <h2>Valence</h2>
-      <p class="floatUpDown"><em>Valence</em> representa <span class="tooltip" data-tooltip="Estructuras de ADN como redes de relaciones moleculares">moléculas genéticas</span> en una interfaz interactiva, posicionando la ciencia como un lenguaje visual. Utiliza Processing para mostrar cómo el diseño puede hacer visible lo invisible.</p>
+       <a href="Valence.html"><img src="Valence.jpg"  style=" width: 200px; height: 200 px; border-radius: 50%"></a>
+      <p class="floatUpDown"> representa <span class="tooltip" data-tooltip="Estructuras de ADN como redes de relaciones moleculares">moléculas genéticas</span> en una interfaz interactiva, posicionando la ciencia como un lenguaje visual. Utiliza Processing para mostrar cómo el diseño puede hacer visible lo invisible.</p>
     </section>
 
     <section>
       <h2>Ben Fry</h2>
+      <a href="Ben Fry.html"><img src="Ben.jpg"  style=" width: 200px; height: 200 px; border-radius: 50%"></a><p class="floatUpDown">Formado en diseño y ciencias computacionales en el MIT Media Lab, aplica principios de diseño de información y visualización artística para transformar datos fríos en experiencias visuales atractivas y comprensibles.</p>
     </section>
 
     <section>
@@ -72,6 +75,7 @@
       requestAnimationFrame(animate);
     }
     animate();
+
 
        // Observador de aparición
     const sections = document.querySelectorAll('section');
