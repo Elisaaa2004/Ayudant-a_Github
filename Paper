@@ -11,7 +11,7 @@
   <canvas id="bg"></canvas>
   <div class="main-title">Visualización de Datos</div>
   <div class="container">
-    <section class="floatUpDown" >
+    <section>
       <h1> La visualización de datos como nueva abstracción y antisublime</h1>
       <p>>Este ensayo web vincula el paper de <span class="tooltip" data-tooltip="Teórico de los nuevos medios y pionero en estudios sobre software y cultura digital">Lev Manovich</span> con el proyecto <span class="tooltip" data-tooltip="Un proyecto de visualización genética interactiva desarrollado por Ben Fry en 2002">Valence (2002)</span> de <span class="tooltip" data-tooltip="Diseñador, programador y co-creador de Processing, centrado en la visualización de información">Ben Fry</span>.</p>
     </section>
@@ -73,7 +73,7 @@
     }
     animate();
 
-    // Observador de aparición
+       // Observador de aparición
     const sections = document.querySelectorAll('section');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -132,6 +132,7 @@
 
     window.addEventListener('load', placeSectionsWithoutOverlap);
     window.addEventListener('resize', placeSectionsWithoutOverlap);
+
   </script>
 </body>
 </html>
